@@ -1,25 +1,34 @@
 package entity
 
-// import "gorm.io/gorm"
+import "gorm.io/gorm"
 
 type Customer struct {
 	
-	// gorm.Model
-	
-	// FirstName string
+	gorm.Model
 
-	// LastName string
+	FirstName string 
 
-	// UserName string `gorm:"uniqueIndex"`
+	LastName string 
 
-	// Password string
+	Username string `gorm:"uniqueIndex"`
 
-	// Email string `gorm:"uniqueIndex"`
+	Password string 
 
-	// Phone int32
+	Address string 
 
-	// Address string
+	Email string `gorm:"uniqueIndex;check:email LIKE '%.com'"`
 
-	ID        int `gorm:"primarykey"`
+	Phone string 
+
+	Gender    string `gorm:"check:gender IN ('male', 'female', 'other')"`
+
+	//FK export
+	Orders []Order `gorm:"foreignKey:CustomerID"`
+
+	Deliveries []Delivery `gorm:"foreignKey:CustomerID"`
+
+	Payments []Payment `gorm:"foreignKey:CustomerID"`
+
+
 
 }

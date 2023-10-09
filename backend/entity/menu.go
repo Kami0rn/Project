@@ -8,7 +8,9 @@ type Menu struct {
 
 	gorm.Model
 
-	Title string
+	Title string `gorm:"not null"`
 
-
+	Description string 
+	//FK export
+	FoodMenus []FoodMenu `gorm:"foreignKey:MenuID"`
 }

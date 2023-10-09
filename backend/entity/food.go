@@ -5,11 +5,19 @@ import (
 )
 
 type Food struct {
-
 	gorm.Model
 
-	description string
+	FoodName string `gorm:"not null"`
 
-	price float32
+	FoodPrice float32 `gorm:"not null"`
 
+	Description string 
+
+	Path string `gorm:"not null"`
+
+
+	//FK export
+	OrderFoods []OrderFood `gorm:"foreignKey:FoodID"`
+
+	FoodMenus []FoodMenu `gorm:"foreignKey:FoodID"`
 }

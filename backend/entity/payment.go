@@ -15,9 +15,9 @@ type Payment struct {
 
 	DateTime time.Time
 
-	//FK
+	// FK
 
-	// CustomerID *uint
-	// Customer Customer `gorm:"foreignKey:CustomerID"`
+	CustomerID *uint
+	Customer Customer `gorm:"foreignKey:CustomerID"`
 
 }
