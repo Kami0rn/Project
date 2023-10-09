@@ -1,22 +1,25 @@
 package entity
 
-import "gorm.io/gorm"
+// import "gorm.io/gorm"
 
 type Customer struct {
 	
-	gorm.Model
+	// gorm.Model
 	
-	FirstName string
+	// FirstName string
 
-	LastName string
+	// LastName string
 
-	UserName string `gorm:"uniqueIndex"`
+	// UserName string `gorm:"uniqueIndex"`
 
-	Password string
+	// Password string
 
-	Email string `gorm:"uniqueIndex"`
+	// Email string `gorm:"uniqueIndex"`
 
-	Phone int32
+	// Phone int32
 
-	Address string
+	// Address string
+
+	ID        int `gorm:"primarykey"`
+
 }
