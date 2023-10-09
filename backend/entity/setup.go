@@ -34,10 +34,17 @@ func SetupDatabase() {
 
 	database.AutoMigrate(
 		&Customer{},
-		&Menu{},
+		// &Delivery{}, 
+		&Food{}, 
+		&FoodMenu{}, 
+		// &History{}, 
+		&Menu{}, 
+		&Order{}, 
+		&OrderFood{}, 
 		&Rider{},
-		&Food{},
-		&Payment{},
+		// &Payment{},
+		// &Salary{},
+		// &Wallet{},
 	 )
 
 	db = database

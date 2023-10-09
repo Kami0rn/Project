@@ -10,9 +10,9 @@ type OrderFood struct {
 
 	//FK
 	OrderID *uint
-	Order []Order `gorm:"foreignKey:OrderID"`
+	Order Order `gorm:"foreignKey:OrderID"`
 
 	FoodID *uint
-	Food []Food `gorm:"foreignKey:FoodID"`
+	Food Food `gorm:"foreignKey:FoodID"`
 
 }

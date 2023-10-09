@@ -18,15 +18,15 @@ type Order struct {
 	CustomerID *uint
 	Customer Customer `gorm:"foreignKey:CustomerID"`
 
-	PaymentID *uint
-	Payment Payment `gorm:"foreignKey:PaymentID"`
+	// PaymentID *uint
+	// Payment Payment `gorm:"foreignKey:PaymentID"`
 
 	//FK export
 	OrderFoods []OrderFood `gorm:"foreignKey:OrderID"`
 
-	Deliveries []Delivery `gorm:"foreignKey:OrderID"`
+	// Deliveries []Delivery `gorm:"foreignKey:OrderID"`
 
-	Payments []Payment `gorm:"foreignKey:OrderID"`
+
 
 }
 
