@@ -14,7 +14,7 @@ type Wallet struct {
 	//FK
 
 	PaymentID *uint
-	Payment []Payment `gorm:"foreignKey:PaymentID"`
+	Payment Payment `gorm:"foreignKey:PaymentID"`
 
 	//FK export
 	TopUps []TopUp `gorm:"foreignKey:WalletID"`
@@ -29,6 +29,6 @@ type TopUp struct {
 
 	//FK
 	WalletID *uint
-	Wallet []Wallet `gorm:"foreignKey:WalletID"`
+	Wallet Wallet `gorm:"foreignKey:WalletID"`
 
 }

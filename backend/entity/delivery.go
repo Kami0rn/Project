@@ -18,6 +18,6 @@ type Delivery struct {
 	Rider Rider `gorm:"foreignKey:RiderID"`
 
 	//FK export
-	// Histories []History `gorm:"foreignKey:DeliveryID"`
+	Histories []History `gorm:"foreignKey:DeliveryID"`
 
 }
