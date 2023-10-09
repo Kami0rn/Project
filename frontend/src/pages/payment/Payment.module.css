@@ -1,0 +1,227 @@
+*{
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+}
+.bgn{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FFF8F0;
+    width: 100%;
+    /* height: 100%; */
+}
+.txt{
+    color: blueviolet;
+    width: 100%;
+
+}
+#pMethod{
+    width: 60%;
+    /* height: 300px; */
+    background-color: #fff;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 17px;
+    max-width: 900px ;
+}
+#detail{
+    width: 20%;
+    /* height: 300px; */
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 20px ;
+}
+#detail h1{
+    color: #9E2B25;
+}
+#bg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* height: 100vw; */
+    background-color: #FFF8F0;
+    padding-top: 40px ;
+
+}
+#address {
+    display: flex;
+    flex-direction: column;
+}
+#address h1 {
+    margin: 10px;
+    margin-left: 30px;  
+}
+#address h4 {
+    margin: 10px;
+    margin-left: 30px;
+}
+hr {
+    margin-left: 10%;
+    margin-right: 10%;
+    border-block-start-style: dashed ;
+    border-width: 1px; /* You can adjust the thickness of the dots */
+    width: 80%; /* Adjust the width of the line as needed */
+    color: #9E2B25;
+}
+
+#bill{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 20px;
+}
+#bill h1 {
+    margin: 10px;
+    margin-left: 30px;
+}
+#bill ul {
+    margin: 10px;
+    margin-left: 40px;
+}
+#bill h2 {
+    margin-left: 10%;
+    margin-bottom: 4%;
+    margin-top: 15%;
+    color: #9E2B25;
+}
+#pMethod h1 {
+    margin: 10px;
+    margin-left: 30px;
+    color: #9E2B25;
+}
+#pMethod hr {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+}
+.btn{
+    display: flex;
+    flex-direction: column ;
+    margin: 5%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid #9E2B25;
+    border-radius: 12px;
+    height: 130px;
+    justify-content: center;
+    font-size: 20px;
+    font-family: 'PT Sans', sans-serif;
+    transition-duration: 0.5s;
+    /* transition-delay: 0.5s; */
+}
+.btn:hover{
+    background-color: #f1740076;
+    color: #fff;
+    width: 22%;
+    height: 150px;
+
+}
+
+.btn:active{
+    background-color: #9e2b25c9;
+    color: #fff;
+    
+}
+.btn img{
+    max-height: 50px;
+}
+#topbtn{
+    display: flex;
+    flex-direction: row ;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+#gbtn{
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    justify-content: center;
+    /* max-width: 500px; */
+    
+}
+#soywallet{
+    display: flex;
+    flex-direction: column ;
+    margin: 5%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid #9E2B25;
+    border-radius: 12px;
+    justify-content: center;
+    padding: 30px;
+    margin-top: 10px;
+    transition-duration: 0.5s;
+    /* transition-delay: 0.5s; */
+}
+#soywallet:hover{
+    background-color: #f1740076;
+    color: #fff;
+
+    width: 45%;
+    transition-duration: 0.7s;
+
+    width: 37%;
+
+}
+#soywallet #banner{
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+#soywallet h1{
+    margin-bottom: 20px;
+}
+#lowbtn{
+    display: flex;
+    flex-direction: row ;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    
+}
+#w{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    font-size: 30px;
+    
+}
+#w img{
+    max-height: 40px ;
+}
+#pbtn{
+    width: 100%;
+    height: 100px;
+    display :flex ;
+    align-items: center;
+}
+#paybtn{
+    width: 13%;
+    height: 45%;
+    margin-left: 10% ;
+    background-color: #BC6962;
+    color: #fff;
+    border-radius: 6px;
+    border: none;
+    transition-duration: 0.3s;
+    
+}
+
+#paybtn:hover{
+    background-color: #bc69627a;
+    border: #BC6962;
+    color: #9E2B25;
+    border-width: 1px;
+}
+#paybtn:active{
+    background-color: #9E2B25;
+    color: #fff;
+}
+

@@ -1,0 +1,13 @@
+.bgHome{
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.Buton {
+    margin-top: 70px;
+} 
+
+.Buton button {
+    margin: 10px;
+}

@@ -1,21 +1,14 @@
 import React from 'react'
 import styles from './Nav.module.css'
-import { Link } from "react-router-dom";
+import { Link ,NavLink } from "react-router-dom";
 import { useState } from 'react'
 
 
+
 function Nav() {
-    // const [ fix,setFix ] = useState(false)
-    // function setFixed(){
-    //   if (window.scrollY >= 392) {
-    //     setFix(true)
-    //   }else{
-    //     setFix(false)
-    //   }
-    // }
-    // window.addEventListener("scroll",setFixed)
+
   return (
-    <nav id='navbar'>
+    <nav id={styles.navbar}>
         <div >
           <Link to='/' id={styles.burger} >
             <img  src="/NavImage/burger.png" alt="" />

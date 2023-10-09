@@ -1,29 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter } from 'react-router-dom';
-
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Import Routes instead of Route
+import Nav from './pages/Nav/Nav';
+import Payment from './pages/payment/Payment';
+import Home from './pages/etc/Home';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <header className="App-header">
+        <Nav />
         
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Routes> {/* Use Routes instead of Route */}
+          <Route path="/" element={<Home />} /> 
+          <Route path="/payment" element={<Payment />} /> 
+        </Routes>
+        
       </div>
     </BrowserRouter>
   );
