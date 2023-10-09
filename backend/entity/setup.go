@@ -37,7 +37,7 @@ func SetupDatabase() {
 		// &Delivery{}, 
 		&Food{}, 
 		&FoodMenu{}, 
-		// &History{}, 
+		&History{}, 
 		&Menu{}, 
 		&Order{}, 
 		&OrderFood{}, 

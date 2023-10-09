@@ -22,6 +22,10 @@ type Rider struct {
 
 	License string
 
+	//FK export
+
+	Deliveries []Delivery `gorm:"foreignKey:RiderID"`
+
 }
 
 	

@@ -25,7 +25,7 @@ type Customer struct {
 	//FK export
 	// Orders []Order `gorm:"foreignKey:CustomerID"`
 
-	// Deliveries []Delivery `gorm:"foreignKey:CustomerID"`
+	Deliveries []Delivery `gorm:"foreignKey:CustomerID"`
 
 	// Payments []Payment `gorm:"foreignKey:CustomerID"`
 

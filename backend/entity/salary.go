@@ -16,9 +16,9 @@ type Salary struct {
 
 	//FK 
 	HistoryID *uint
-	History []History `gorm:"foreignKey:HistoryID"`
+	History History `gorm:"foreignKey:HistoryID"`
 
 	RiderID *uint
-	Rider []Rider `gorm:"foreignKey:RiderID"`
+	Rider Rider `gorm:"foreignKey:RiderID"`
 
 }
