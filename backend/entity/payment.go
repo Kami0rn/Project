@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"time"
+
 	"gorm.io/gorm"
 )
 
@@ -13,7 +13,7 @@ type Payment struct {
 
 	Method string
 
-	DateTime time.Time
+
 
 	// FK
 

@@ -1,0 +1,33 @@
+#address {
+    display: flex;
+    flex-direction: column;
+}
+#address h1 {
+    margin: 10px;
+    margin-left: 30px;  
+}
+#address h4 {
+    margin: 10px;
+    margin-left: 30px;
+}
+
+#bill{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 20px;
+}
+#bill h1 {
+    margin: 10px;
+    margin-left: 30px;
+}
+#bill ul {
+    margin: 10px;
+    margin-left: 40px;
+}
+#bill h2 {
+    margin-left: 10%;
+    margin-bottom: 4%;
+    margin-top: 15%;
+    color: #9E2B25;
+}

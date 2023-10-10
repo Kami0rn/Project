@@ -1,131 +1,94 @@
 package controller
 
-
 import (
-
 	"net/http"
 
-
-	"github.com/gin-gonic/gin"
-
 	"github.com/Kami0rn/SoyJuuProject/entity"
+	"github.com/gin-gonic/gin"
 
 )
 
-
+// POST /users
 func CreateCustomer(c *gin.Context) {
-
 	var customer entity.Customer
-	
+
+
+	// bind เข้าตัวแปร user
 	if err := c.ShouldBindJSON(&customer); err != nil {
-	
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		
 		return
-	
 	}
-	
-	if err := entity.DB().Create(&customer).Error; err != nil {
-	
+
+	// สร้าง Customer
+	newCustomer := entity.Customer{
+		FirstName: customer.FirstName,
+		LastName:  customer.LastName,
+		UserName:  customer.UserName,
+		Password:  customer.Password,
+		Address:   customer.Address,
+		Email:     customer.Email,
+		Phone:     customer.Phone,
+		Gender:    customer.Gender,
+	}
+
+	// บันทึก
+	if err := entity.DB().Create(&newCustomer).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		
 		return
-	
 	}
-	
-	c.JSON(http.StatusOK, gin.H{"data": customer})
-	
-} 
 
-// GET /user/:id
-
-func GetCustomer(c *gin.Context) {
-
-	var customer entity.Customer
-	
-	id := c.Param("id")
-	
-	if err := entity.DB().Raw("SELECT * FROM customer WHERE id = ?", id).Scan(&customer).Error; err != nil {
-	
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	
-	return
-	
-	}
-	
-	c.JSON(http.StatusOK, gin.H{"data": customer})
-	
+	c.JSON(http.StatusOK, gin.H{"data": newCustomer})
 }
 
-// GET /customers
-
-func ListCustomers(c *gin.Context) {
-
-	var customers []entity.Customer
-	
-	if err := entity.DB().Raw("SELECT * FROM customers").Scan(&customers).Error; err != nil {
-	
+// GET /user/:id
+func GetCustomer(c *gin.Context) {
+	var customer entity.Customer
+	id := c.Param("id")
+	if err := entity.DB().Raw("SELECT * FROM customers WHERE id = ?", id).Find(&customer).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		
 		return
-	
 	}
-	
+	c.JSON(http.StatusOK, gin.H{"data": customer})
+}
+
+// GET /users
+func ListCustomers(c *gin.Context) {
+	var customers []entity.Customer
+	if err := entity.DB().Raw("SELECT * FROM customers").Find(&customers).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 	c.JSON(http.StatusOK, gin.H{"data": customers})
-	
 }
 
 // DELETE /users/:id
-
 func DeleteCustomer(c *gin.Context) {
-
 	id := c.Param("id")
-	
 	if tx := entity.DB().Exec("DELETE FROM customers WHERE id = ?", id); tx.RowsAffected == 0 {
-		
-		c.JSON(http.StatusBadRequest, gin.H{"error": "customer not found"})
-		
+		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
 		return
-	
 	}
-	
 	c.JSON(http.StatusOK, gin.H{"data": id})
-	
 }
 
-
 // PATCH /users
-
 func UpdateCustomer(c *gin.Context) {
-
 	var customer entity.Customer
-	
+	var result entity.Customer
+
 	if err := c.ShouldBindJSON(&customer); err != nil {
-	
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		
 		return
-	
 	}
-	
-	
-	if tx := entity.DB().Where("id = ?", customer.ID).First(&customer); tx.RowsAffected == 0 {
-	
-		c.JSON(http.StatusBadRequest, gin.H{"error": "customer not found"})
-		
+	// ค้นหา user ด้วย id
+	if tx := entity.DB().Where("id = ?", customer.ID).First(&result); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
 		return
-	
 	}
-	
-	
+
 	if err := entity.DB().Save(&customer).Error; err != nil {
-	
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		
 		return
-	
 	}
-	
 	c.JSON(http.StatusOK, gin.H{"data": customer})
-	
 }

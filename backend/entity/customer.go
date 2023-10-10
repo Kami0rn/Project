@@ -10,7 +10,7 @@ type Customer struct {
 
 	LastName string 
 
-	Username string `gorm:"uniqueIndex"`
+	UserName string `gorm:"uniqueIndex"`
 
 	Password string 
 
