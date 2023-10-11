@@ -12,7 +12,7 @@ func CreatePayment(c *gin.Context) {
 	var payment entity.Payment
 	var customer entity.Customer
 
-	// bind เข้าตัวแปร user
+	// blind เข้าตัวแปร user
 	if err := c.ShouldBindJSON(&payment); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

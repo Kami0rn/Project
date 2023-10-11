@@ -1,0 +1,109 @@
+*{
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+}
+.bgn{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #FFF8F0;
+    width: 100%;
+    /* height: 100%; */
+    height: 100vh;
+}
+#bg{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    /* height: 100vw; */
+    background-color: #FFF8F0;
+    padding-top: 40px ;
+
+}
+#detail{
+    width: 30%;
+    /* height: 300px; */
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 20px ;
+}
+#detail h1{
+    color: #9E2B25;
+}
+#pMethod{
+    width: 50%;
+    /* height: 300px; */
+    background-color: #fff;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 17px;
+    max-width: 900px ;
+}   
+hr {
+    margin-left: 10%;
+    margin-right: 10%;
+    border-block-start-style: dashed ;
+    border-width: 1px; /* You can adjust the thickness of the dots */
+    width: 80%; /* Adjust the width of the line as needed */
+    color: #9E2B25;
+}
+#pMethod h1 {
+    margin: 10px;
+    margin-left: 30px;
+    color: #9E2B25;
+}
+#pMethod hr {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+}
+.fill {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 8% 3%;
+
+}
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+
+    border: 1px solid #1d1d1d;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=time], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+
+    border: 1px solid #1d1d1d;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    width: 60%;
+    background-color: #9E2B25;
+    color: rgb(255, 255, 255);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 30%;
+    margin-left: 20%;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #b36363;
+  }
+
+  input[type='image'] {
+    width: 90px;
+    height: 90px;
+  }
+  

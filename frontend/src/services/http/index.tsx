@@ -1,10 +1,10 @@
 import { CustomerInterface } from "../../interfaces/Icustomer";
 import { PaymentInterface } from "../../interfaces/Ipayment";
 
-const apiUrl = "http://localhost:8080";
+const apiUrl = "http://localhost:8081";
 
 
-async function GetCustomer() {
+async function GetCustomers() {
   const requestOptions = {
     method: "GET",
     headers: {
@@ -225,7 +225,7 @@ async function UpdatePayment(data: PaymentInterface) {
 
 export {
 
-    GetCustomer,
+    GetCustomers,
     CreateCustomer,
     DeleteCustomerByID,
     GetCustomerById,

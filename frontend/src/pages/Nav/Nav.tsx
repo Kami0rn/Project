@@ -23,7 +23,7 @@ function Nav() {
                 </Link>
             </div >
             <div id={styles.profile}>
-                <a href='#' >Jenny Wilson</a>
+                <a href='#' >Arnon Sansom</a>
                 <img src="/NavImage/Vector.png" />
             </div>
         </div>

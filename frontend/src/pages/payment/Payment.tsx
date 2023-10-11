@@ -5,29 +5,15 @@
   import pod from '../../assets/payment/pod.png';
   import walletIcon from '../../assets/payment/walletIcon.png';
   import Detail from './detail/Detail';
-  import Styler from '../payment/detail/Dtail.module.css'; // Check the path and capitalization
-  import { CreatePayment } from '../../services/http';
+ import { Router,Link } from 'react-router-dom';
 
   
 
 
+
   function Payment() {
-    // Initialize selectedPaymentMethod state with a default value of null
-    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
-
-    // Function to handle payment method selection
-    const handlePaymentMethodClick = (method: string) => {
-      if (selectedPaymentMethod === method) {
-        // If the same method is clicked again, deselect it by setting selectedPaymentMethod to null
-        setSelectedPaymentMethod(null);
-      } else {
-        // Set the selected payment method
-        setSelectedPaymentMethod(method);
-      }
-    };
-
-    // Check if a payment method is selected
-    const isPaymentSelected = selectedPaymentMethod !== null;
+   
+  
 
     return (
       <>
@@ -47,47 +33,43 @@
                       <div id={styles.gbtn}>
                         <div id={styles.topbtn}>
                           {/* Credit / Debit Card button */}
-                          <button
-                            className={`${styles.btn} ${selectedPaymentMethod === 'bank' ? styles.selected : ''}`}
-                            id={styles.bank}
-                            onClick={() => handlePaymentMethodClick('bank')}
-                          >
+                          <Link to='/payment/bank' ><button
+                            className={styles.btn} id={styles.bank}>
                             BankTranfer
                             <img src={bank} alt="" />
-                          </button>
+                          </button></Link>
+
+
+
+                          
                           {/* Banktransfer button */}
-                          <button
-                            className={`${styles.btn} ${selectedPaymentMethod === 'debit' ? styles.selected : ''}`}
-                            id={styles.debit}
-                            onClick={() => handlePaymentMethodClick('debit')}
+                          <Link to='/payment/card' ><button
+                            className={styles.btn} id={styles.debit}
                           >
                             Credit / Debit Card
                             <img src={debit} alt="" />
-                          </button>
+                          </button></Link>
                           {/* Pay at delivery button */}
-                          <button
-                            className={`${styles.btn} ${selectedPaymentMethod === 'pod' ? styles.selected : ''}`}
-                            id={styles.pod}
-                            onClick={() => handlePaymentMethodClick('pod')}
+                          <Link to='/payment/pad' ><button
+                            className={styles.btn} id={styles.pod}
                           >
                             Pay at delivery
                             <img src={pod} alt="" />
-                          </button>
+                          </button></Link>
                           <div></div>
                         </div>
                         {/* ... (rest of your JSX) */}
                       </div>
                       <div id={styles.lowbtn}>
                         {/* Soywallet button */}
-                        <button  className={`${styles.btn} ${selectedPaymentMethod === 'wallet' ? styles.selected : ''}`}
-                        id={styles.soywallet}
-                        onClick={() => handlePaymentMethodClick('wallet')}>
+                        <Link to='/payment/wallet' ><button  className={styles.btn} id={styles.soywallet}
+                       >
                           <img src={walletIcon} alt="" />
                           <div id={styles.soywallettxt}>
                             <h3>Soywallet</h3>
                             <p>Balance: ฿0.00</p>
                           </div>
-                        </button>
+                        </button></Link>
 
 
                       </div>
@@ -97,18 +79,11 @@
                         {/* Pay button (disabled if no payment method is selected) */}
 
 
-                          <button
-                            id={styles.paybtn}
-                            disabled={!isPaymentSelected}
-                            onClick={() => {
-                              if (isPaymentSelected) {
-                                // Proceed to the next step (add your logic here)
-                                console.log('Payment method selected:', selectedPaymentMethod);
-                              }
-                            }}
-                          >
-                            Pay
-                          </button>
+                        {/* <button
+  className={styles.btn} id={styles.paybtn}
+>
+  Pay
+</button> */}
                       </div>
                       </div>
                     <div id={styles.detail}>

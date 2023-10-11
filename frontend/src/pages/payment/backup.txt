@@ -1,0 +1,135 @@
+  import React, { useState } from 'react';
+  import styles from './Payment.module.css';
+  import bank from '../../assets/payment/bank.png';
+  import debit from '../../assets/payment/debit.png';
+  import pod from '../../assets/payment/pod.png';
+  import walletIcon from '../../assets/payment/walletIcon.png';
+  import Detail from './detail/Detail';
+  import Styler from '../payment/detail/Dtail.module.css'; // Check the path and capitalization
+  import { CreatePayment } from '../../services/http';
+  import { PaymentInterface } from '../../interfaces/Ipayment';
+  
+
+
+
+  function Payment() {
+    // Initialize selectedPaymentMethod state with a default value of null
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
+
+    // Function to handle payment method selection
+    const handlePaymentMethodClick = (method: string) => {
+      if (selectedPaymentMethod === method) {
+        // If the same method is clicked again, deselect it by setting selectedPaymentMethod to null
+        setSelectedPaymentMethod(null);
+      } else {
+        // Set the selected payment method
+        setSelectedPaymentMethod(method);
+      }
+    };
+
+    // Check if a payment method is selected
+    const isPaymentSelected = selectedPaymentMethod !== null;
+
+
+    var handlePayClick = async (payclick  : PaymentInterface) => {
+      payclick.IsPaid = false;
+      payclick.Method = selectedPaymentMethod as string;
+      payclick.CustomerID = 1;
+      CreatePayment(payclick);
+      
+      
+    }
+  
+
+    return (
+      <>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&family=PT+Sans&display=swap');
+        </style>
+          <div className={styles.bgn}>
+            <section id={styles.bg}>
+              <div id={styles.pMethod}>
+                <h1>
+                  Select payment method
+                </h1>
+                <hr />
+                  
+      
+                      {/* ... (your other JSX) */}
+                      <div id={styles.gbtn}>
+                        <div id={styles.topbtn}>
+                          {/* Credit / Debit Card button */}
+                          <button
+                            className={`${styles.btn} ${selectedPaymentMethod === 'bank' ? styles.selected : ''}`}
+                            id={styles.bank}
+                            onClick={() => handlePaymentMethodClick('bank')}
+                          >
+                            BankTranfer
+                            <img src={bank} alt="" />
+                          </button>
+                          {/* Banktransfer button */}
+                          <button
+                            className={`${styles.btn} ${selectedPaymentMethod === 'debit' ? styles.selected : ''}`}
+                            id={styles.debit}
+                            onClick={() => handlePaymentMethodClick('debit')}
+                          >
+                            Credit / Debit Card
+                            <img src={debit} alt="" />
+                          </button>
+                          {/* Pay at delivery button */}
+                          <button
+                            className={`${styles.btn} ${selectedPaymentMethod === 'pod' ? styles.selected : ''}`}
+                            id={styles.pod}
+                            onClick={() => handlePaymentMethodClick('pod')}
+                          >
+                            Pay at delivery
+                            <img src={pod} alt="" />
+                          </button>
+                          <div></div>
+                        </div>
+                        {/* ... (rest of your JSX) */}
+                      </div>
+                      <div id={styles.lowbtn}>
+                        {/* Soywallet button */}
+                        <button  className={`${styles.btn} ${selectedPaymentMethod === 'wallet' ? styles.selected : ''}`}
+                        id={styles.soywallet}
+                        onClick={() => handlePaymentMethodClick('wallet')}>
+                          <img src={walletIcon} alt="" />
+                          <div id={styles.soywallettxt}>
+                            <h3>Soywallet</h3>
+                            <p>Balance: ฿0.00</p>
+                          </div>
+                        </button>
+
+
+                      </div>
+
+
+                      <div id={styles.pbtn}>
+                        {/* Pay button (disabled if no payment method is selected) */}
+
+
+                        <button
+  id={styles.paybtn}
+  disabled={!isPaymentSelected}
+  onClick={() => handlePayClick({ /* Pass the necessary PaymentInterface properties here */ })}
+>
+  Pay
+</button>
+                      </div>
+                      </div>
+                    <div id={styles.detail}>
+                      <Detail />
+                      
+                    </div>
+            <footer>
+
+            </footer>
+          </section>
+          </div>
+        {/* ... (rest of your JSX) */}
+      </>
+    );
+  }
+
+  export default Payment;

@@ -1,17 +1,14 @@
 package main
 
-
 import (
-
 	"github.com/gin-gonic/gin"
 
 	"github.com/Kami0rn/SoyJuuProject/controller"
 
 	"github.com/Kami0rn/SoyJuuProject/entity"
-
 )
 
-const PORT = "8080"
+const PORT = "8081"
 
 
 func main() {
