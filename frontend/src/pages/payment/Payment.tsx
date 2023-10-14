@@ -6,7 +6,7 @@
   import walletIcon from '../../assets/payment/walletIcon.png';
   import Detail from './detail/Detail';
  import { Router,Link } from 'react-router-dom';
-
+ import BG from '../../assets/etc/BG.jpg';
   
 
 
@@ -20,7 +20,9 @@
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&family=PT+Sans&display=swap');
         </style>
+        
           <div className={styles.bgn}>
+
             <section id={styles.bg}>
               <div id={styles.pMethod}>
                 <h1>
@@ -76,6 +78,7 @@
 
 
                       <div id={styles.pbtn}>
+                        
                         {/* Pay button (disabled if no payment method is selected) */}
 
 

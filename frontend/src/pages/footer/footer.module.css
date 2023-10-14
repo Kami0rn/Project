@@ -1,0 +1,9 @@
+.footerBG {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-around;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: #9e2b25 ;
+}

@@ -1,12 +1,12 @@
 export interface CustomerInterface {    
 
-    FirstName : string;
-    LastName : string;
-    UserName : string;
-    Password : string;
-    Address : string;
-    Email : string;
-    Phone : string;
+    UserName?: string;
+    FirstName?: string;
+    LastName?: string;
+    Email?: string;
+    Address?: string;
+    Phone?: string;
+    Password?: string;
 
 
 }

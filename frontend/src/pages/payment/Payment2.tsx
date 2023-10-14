@@ -5,6 +5,7 @@ import bank from '../../assets/payment/bank.png';
 import debit from '../../assets/payment/debit.png';
 import pod from '../../assets/payment/pod.png';
 import walletIcon from '../../assets/payment/walletIcon.png';
+import BG from '../../assets/etc/BG.jpg';
 
 
 

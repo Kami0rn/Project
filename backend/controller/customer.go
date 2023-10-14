@@ -28,7 +28,7 @@ func CreateCustomer(c *gin.Context) {
 		Address:   customer.Address,
 		Email:     customer.Email,
 		Phone:     customer.Phone,
-		Gender:    customer.Gender,
+
 	}
 
 	// บันทึก

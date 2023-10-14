@@ -6,21 +6,25 @@ type Customer struct {
 	
 	gorm.Model
 
+	UserName string `gorm:"uniqueIndex"`
+
 	FirstName string 
 
 	LastName string 
 
-	UserName string `gorm:"uniqueIndex"`
-
-	Password string 
+	Email string `gorm:"uniqueIndex;"`
 
 	Address string 
 
-	Email string `gorm:"uniqueIndex;check:email LIKE '%.com'"`
-
 	Phone string 
 
-	Gender    string `gorm:"check:gender IN ('male', 'female', 'other')"`
+	Password string 
+
+
+
+
+
+
 
 	//FK export
 	Orders []Order `gorm:"foreignKey:CustomerID"`
