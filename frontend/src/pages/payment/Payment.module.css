@@ -112,6 +112,7 @@ hr {
     font-family: 'PT Sans', sans-serif;
     transition-duration: 0.5s;
     /* transition-delay: 0.5s; */
+    min-width: 160px;
 }
 .btn:hover{
     background-color: #f1740076;
@@ -143,7 +144,7 @@ hr {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding-left: 15%;
+    padding-left: 9%;
 
     /* max-width: 500px; */
     

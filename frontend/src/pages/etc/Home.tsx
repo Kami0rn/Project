@@ -8,6 +8,7 @@ function Home() {
       <div className={styles.Buton}>
         <Link to='/'><button>home</button></Link>
         <Link to='/payment' ><button>payment</button></Link>
+        <Link to='/register' ><button>register</button></Link>
         
       </div>  
 

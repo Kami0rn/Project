@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react' ;
 import Styler from './Detail.module.css'; // Check the path and capitalization
-import { GetCustomerById, GetCustomers } from "../../../services/http/index";
+import { GetCustomerById, GetCustomers } from "../../../services/http/customer/customer";
 import { CustomerInterface } from "../../../interfaces/Icustomer";
 import { PaymentInterface } from "../../../interfaces/Ipayment";
 import type { ColumnsType } from "antd/es/table";
@@ -69,7 +69,7 @@ const firstNames = customers.map(user => user.FirstName).join(", ");
 const address = customers.map(user => user.Address).join(", ");
 const lastname = customers.map(user => user.LastName).join(", ");
 
-const userWithID1 = customers.find(user => user.ID === 1);
+// const userWithID1 = customers.find(user => user.ID === 1);
 useEffect(() => {
     getCustomer();
   }, []);

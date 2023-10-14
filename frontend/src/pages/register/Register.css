@@ -1,0 +1,14 @@
+.form{
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  column-gap: 16px;
+  row-gap: 16px;
+  max-width: 400px;
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+}

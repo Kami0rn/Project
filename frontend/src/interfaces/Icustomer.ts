@@ -1,5 +1,5 @@
 export interface CustomerInterface {    
-    ID : number;
+
     FirstName : string;
     LastName : string;
     UserName : string;
@@ -7,6 +7,6 @@ export interface CustomerInterface {
     Address : string;
     Email : string;
     Phone : string;
-    Gender : string;
+
 
 }
