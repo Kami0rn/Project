@@ -7,6 +7,7 @@ export interface CustomerInterface {
     Address?: string;
     Phone?: string;
     Password?: string;
+    HashedPassword?: string;
 
 
 }

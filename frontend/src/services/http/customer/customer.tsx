@@ -64,6 +64,25 @@ async function GetCustomerById(id: Number | undefined) {
   return res;
 }
 
+
+async function GetCustomerByHash(hashed_password: string | undefined) {
+  const requestOptions = {
+    method: "GET"
+  };
+
+  let res = await fetch(`${apiUrl}/customer/hash/${hashed_password}`, requestOptions)
+    .then((response) => response.json())
+    .then((res) => {
+      if (res.data) {
+        return res.data;
+      } else {
+        return false;
+      }
+    });
+
+  return res;
+}
+
 async function CreateCustomer(data: CustomerInterface) {
   const requestOptions = {
     method: "POST",
@@ -105,13 +124,17 @@ async function UpdateCustomer(data: CustomerInterface) {
 }
 
 
+
+
+
 export {
 
     GetCustomers,
     CreateCustomer,
     DeleteCustomerByID,
     GetCustomerById,
-    UpdateCustomer
+    UpdateCustomer,
+    GetCustomerByHash
   };
 
 

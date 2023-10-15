@@ -9,6 +9,7 @@ import Wallet from './pages/payment/method/Wallet';
 import PAD from './pages/payment/method/PAD';
 import Register from './pages/register/Register';
 import Footers from './pages/footer/footers';
+import Login from './pages/login/Login';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/payment/wallet" element={<Wallet />} />
           <Route path="/payment/pad" element={<PAD />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footers />
         

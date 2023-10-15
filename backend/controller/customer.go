@@ -5,13 +5,11 @@ import (
 
 	"github.com/Kami0rn/SoyJuuProject/entity"
 	"github.com/gin-gonic/gin"
-
 )
 
 // POST /users
 func CreateCustomer(c *gin.Context) {
 	var customer entity.Customer
-
 
 	// bind เข้าตัวแปร user
 	if err := c.ShouldBindJSON(&customer); err != nil {
@@ -21,14 +19,14 @@ func CreateCustomer(c *gin.Context) {
 
 	// สร้าง Customer
 	newCustomer := entity.Customer{
-		FirstName: customer.FirstName,
-		LastName:  customer.LastName,
-		UserName:  customer.UserName,
-		Password:  customer.Password,
-		Address:   customer.Address,
-		Email:     customer.Email,
-		Phone:     customer.Phone,
-
+		FirstName:      customer.FirstName,
+		LastName:       customer.LastName,
+		UserName:       customer.UserName,
+		Password:       customer.Password,
+		Address:        customer.Address,
+		Email:          customer.Email,
+		Phone:          customer.Phone,
+		HashedPassword: customer.HashedPassword,
 	}
 
 	// บันทึก
@@ -91,4 +89,17 @@ func UpdateCustomer(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"data": customer})
+}
+
+func GetCustomerByHash(c *gin.Context) {
+    var customer entity.Customer
+    hashedPassword := c.Param("hashed_password")
+
+    // Replace this with a proper database query to retrieve the customer by hashed password
+    if err := entity.DB().Where("hashed_password = ?", hashedPassword).First(&customer).Error; err != nil {
+        c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid username or password"});
+        return;
+    }
+
+    c.JSON(http.StatusOK, gin.H{"data": customer});
 }

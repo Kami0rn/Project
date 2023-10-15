@@ -9,6 +9,7 @@ function Home() {
         <Link to='/'><button>home</button></Link>
         <Link to='/payment' ><button>payment</button></Link>
         <Link to='/register' ><button>register</button></Link>
+        <Link to='/login' ><button>login</button></Link>
         
       </div>  
 

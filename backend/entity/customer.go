@@ -20,6 +20,8 @@ type Customer struct {
 
 	Password string 
 
+	HashedPassword string
+
 
 
 

@@ -2,10 +2,28 @@ import React from "react";
 import "./Register.css";
 import { Layout, Space,App as sss, Button,Form , message,  Input, } from 'antd';
 // import { useNavigate } from "react-router-dom";
-import { CreateUser } from "../../services/http/register/register";
+import { CreateCustomer } from "../../services/http/customer/customer";
 import { CustomerInterface } from "../../interfaces/Icustomer";
 import BG from '../../assets/etc/BG.jpg';
 import raw from '../../assets/etc/raw.jpg';
+ 
+
+const arrayBufferToHex = (arrayBuffer : any) => {
+  const view = new DataView(arrayBuffer);
+  let hex = '';
+  for (let i = 0; i < view.byteLength; i += 1) {
+    const value = view.getUint8(i);
+    hex += value.toString(16).padStart(2, '0');
+  }
+  return hex;
+};
+
+const sha256 = async (message : any) => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  return arrayBufferToHex(hashBuffer);
+};
 
 //ตกเเต่งส่วนหัว
 const { Header, Content } = Layout;
@@ -37,29 +55,26 @@ const Register: React.FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
   //ส่วนนี้เป็นการนำค่าไปใส่ตาราง
   const onFinish = async (values: CustomerInterface) => {
-  let res = await CreateUser(values);
-  //
-  //กำหนดว่าจะให้เเจ้งเตือนอะไร
-  if (res.status) {
-    messageApi.open({
-      type: "success",
-      content: "บันทึกข้อมูลสำเร็จ",
-  });
-
-  // setTimeout(function () {
-
-  // navigate("/");
-
-  // }, 2000);
-
-  } else {
-
-    console.log(res);
-
-  }
-  //
-
-};
+    // Concatenate the UserName and Password
+    const concatenatedString = `${values.UserName}${values.Password}`;
+  
+    // Hash the concatenated string using SHA-256
+    const hashedPassword = await sha256(concatenatedString);
+  
+    // Update the values to include the HashedPassword
+    values.HashedPassword = hashedPassword;
+  
+    let res = await CreateCustomer(values);
+  
+    if (res.status) {
+      messageApi.open({
+        type: "success",
+        content: "บันทึกข้อมูลสำเร็จ",
+      });
+    } else {
+      console.log(res);
+    }
+  };
   return (
     <>
     <style>

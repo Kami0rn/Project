@@ -27,11 +27,15 @@ func main() {
 
 	r.GET("/customer/:id", controller.GetCustomer)
 
+	r.GET("/customer/hash/:hashed_password", controller.GetCustomerByHash)
+
 	r.POST("/customers", controller.CreateCustomer)
 
 	r.PATCH("/customers", controller.UpdateCustomer)
 
 	r.DELETE("/customers/:id", controller.DeleteCustomer)
+
+
 
 	// Payment Routes
 	r.GET("/payments", controller.ListPayments)
