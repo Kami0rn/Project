@@ -30,17 +30,21 @@ const Login = () => {
     const concatenatedString = `${value.UserName}${value.Password}`;
     const hashedPassword = await sha256(concatenatedString);
     
-    let res = await GetCustomerByHash(hashedPassword);
-    if (res) {
-      message.success('Login successful');
-      navigate('/');
-    } else {
-      message.error('Invalid username or password');
+    console.log(value)
+    try {
+      const customer = await GetCustomerByHash(hashedPassword);
+  
+      if (customer) {
+        message.success('Login successful');
+        console.log(customer)
+        navigate('/');
+      } else {
+        message.error('Invalid username or password');
+      }
+    } catch (error) {
+      console.error(error);
     }
-    console.log(value.HashedPassword);
-    console.log(hashedPassword);
   };
-
   const onFinish = async (values: CustomerInterface) => {
     setLoading(true);
     handleLogin(values);
