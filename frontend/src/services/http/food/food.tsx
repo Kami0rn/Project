@@ -29,7 +29,7 @@ async function DeleteFoodByID(id: Number | undefined) {
     method: "DELETE"
   };
 
-  let res = await fetch(`${apiUrl}/foods/${id}`, requestOptions)
+  let res = await fetch(`${apiUrl}/foodsdel/${id}`, requestOptions)
     .then((response) => response.json())
     .then((res) => {
       if (res.data) {

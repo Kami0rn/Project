@@ -59,7 +59,7 @@ func main() {
 
 	r.PATCH("/foods", controller.UpdateFood)
 
-	r.DELETE("/foods/:id", controller.DeleteFood)
+	r.DELETE("/foodsdel/:id", controller.DeleteFood)
 
 	// Run the server
 
