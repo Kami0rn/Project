@@ -10,11 +10,12 @@
     flex-direction: column;
     background-color: #ffffffd5;
     border-radius: 10px;
-    width: 20%;
+    width: 30%;
+    padding: 2% 5%;
     height: 50%;
     margin-bottom: 8%;
     position: absolute;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .bg {
     width: 100%;

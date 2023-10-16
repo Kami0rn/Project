@@ -58,6 +58,9 @@ const Login = () => {
 
   return (
     <div className={styles.loginContainer}>
+       <style>
+          @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&family=PT+Sans&display=swap');
+        </style>
       <img src={BG} alt="bg" className={styles.bg} />
       
       <Form
@@ -66,6 +69,7 @@ const Login = () => {
         onFinish={onFinish}
         className={styles.formContainer}
       >
+        <h1>Login</h1>
         
         <Form.Item
           name="UserName"

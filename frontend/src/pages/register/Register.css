@@ -47,7 +47,7 @@
   
 }
 .rightRegist {
-  margin-top: 4%;
+  margin-top: 9%;
   
 }
 input{
@@ -57,4 +57,11 @@ input{
 .ant-space{
   row-gap: 0;
   background-color: #9e2b25;
+}
+.subBTN{
+  width: 20%;
+  max-width: 100px;
+}
+.reLabel {
+  margin: 7%;
 }

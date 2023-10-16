@@ -77,6 +77,9 @@ const Register: React.FC = () => {
   };
   return (
     <>
+     <style>
+          @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&family=PT+Sans&display=swap');
+        </style>
     <style>
           @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&family=PT+Sans&display=swap');
         </style>
@@ -105,7 +108,7 @@ const Register: React.FC = () => {
               <div className="registerBox">
                 <img src={raw} alt="" />
                 <div className="leftRegist">
-                <h2>Register</h2>
+                <h2 className="reLabel">Register</h2>
               
 
                     <Form.Item label="UserName" name="UserName"rules={[{required: true,message: "กรุณากรอก UserName!",},]}>
@@ -134,7 +137,7 @@ const Register: React.FC = () => {
 
                     {/* อันนี้ปุ่มเฉยๆไม่มีไร */}
                     <Form.Item>
-                        <Button style={{backgroundColor: 'brown'}} block type='primary' htmlType='submit'>Submit</Button>
+                        <Button className="subBTN" style={{backgroundColor: 'brown'}} block type='primary' htmlType='submit'>Submit</Button>
                     </Form.Item>
                 </div>
               </div>
