@@ -48,6 +48,19 @@ func main() {
 
 	r.DELETE("/payments/:id", controller.DeletePayment)
 
+
+	//Food Routes
+
+	r.GET("/foods", controller.ListFoods)
+
+	r.GET("/food/:id", controller.GetFood)
+
+	r.POST("/foods", controller.CreateFood)
+
+	r.PATCH("/foods", controller.UpdateFood)
+
+	r.DELETE("/foods/:id", controller.DeleteFood)
+
 	// Run the server
 
 	r.Run("localhost: " + PORT)

@@ -7,13 +7,13 @@ import (
 type Food struct {
 	gorm.Model
 
-	FoodName string `gorm:"not null"`
+	FoodName string 
 
-	FoodPrice float32 `gorm:"not null"`
+	FoodPrice float32 
 
 	Description string 
 
-	Path string `gorm:"not null"`
+	Path string 
 
 
 	//FK export

@@ -10,6 +10,8 @@ function Home() {
         <Link to='/payment' ><button>payment</button></Link>
         <Link to='/register' ><button>register</button></Link>
         <Link to='/login' ><button>login</button></Link>
+        <Link to='/home' ><button>home</button></Link>
+        <Link to='/food/add' ><button>AddFood</button></Link>
         
       </div>  
 

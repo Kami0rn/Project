@@ -10,6 +10,8 @@ import PAD from './pages/payment/method/PAD';
 import Register from './pages/register/Register';
 import Footers from './pages/footer/footers';
 import Login from './pages/login/Login';
+import Homes from './pages/home/Home';
+import Food from './pages/food/add/Food';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path="/payment/pad" element={<PAD />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Homes />} />
+          <Route path="/food/add" element={<Food />} />
         </Routes>
         <Footers />
         
