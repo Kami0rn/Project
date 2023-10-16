@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
+import { useNavigate , Link } from 'react-router-dom'; // Use useNavigate instead of useHistory
 import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { GetCustomerByHash } from "../../services/http/customer/customer";
@@ -100,7 +100,16 @@ const Login = () => {
             Log In
           </Button>
         </Form.Item>
+        <div className={styles.noRegist}>
+          <h6> Secure by SHA256 </h6>
+          <Link to='/register' className={styles.Link}>
+            <h4>Don't have account ?</h4>
+            <h4 className={styles.regisText}>register now!!</h4>
+          </Link>
+        </div>
+
       </Form>
+      
     </div>
   );
 };
