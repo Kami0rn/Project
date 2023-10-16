@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { CustomerProvider } from '../src/pages/context/context'; // Import the CustomerProvider
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <CustomerProvider> {/* Wrap your App component with CustomerProvider */}
+      <App />
+    </CustomerProvider>
   </React.StrictMode>
 );
 

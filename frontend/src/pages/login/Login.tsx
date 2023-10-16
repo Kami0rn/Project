@@ -6,7 +6,7 @@ import { GetCustomerByHash } from "../../services/http/customer/customer";
 import { CustomerInterface } from "../../interfaces/Icustomer";
 import styles from './Login.module.css'
 import BG from '../../assets/etc/BG.jpg';
-import raw from '../../assets/etc/raw.jpg';
+import { useCustomer } from '../context/context'; 
 
 const arrayBufferToHex = (arrayBuffer : any) => {
   const view = new DataView(arrayBuffer); // Corrected line
@@ -28,7 +28,7 @@ const sha256 = async (message : any) => {
 const Login = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-
+  const { login } = useCustomer(); 
   const handleLogin = async (value: CustomerInterface) => {
     const concatenatedString = `${value.UserName}${value.Password}`;
     const hashedPassword = await sha256(concatenatedString);
@@ -38,6 +38,7 @@ const Login = () => {
       const customer = await GetCustomerByHash(hashedPassword);
   
       if (customer) {
+        login(customer);
         message.success('Login successful');
         console.log(customer)
         navigate('/home');
