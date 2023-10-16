@@ -6,6 +6,7 @@ import { CreateCustomer } from "../../services/http/customer/customer";
 import { CustomerInterface } from "../../interfaces/Icustomer";
 import BG from '../../assets/etc/BG.jpg';
 import raw from '../../assets/etc/raw.jpg';
+import { useNavigate } from 'react-router-dom';
  
 
 const arrayBufferToHex = (arrayBuffer : any) => {
@@ -50,33 +51,35 @@ const contentStyle: React.CSSProperties = {
 };
 //ที่เขียนเเบบนี้ไม่รู้เหมือนกันก็อปantมา
 const Register: React.FC = () => {
-  // const navigate = useNavigate();
-  //สร้างข้อความเเจ้งเตือน
+  // Use the useNavigate hook at the component level
+  const navigate = useNavigate();
+
   const [messageApi, contextHolder] = message.useMessage();
-  //ส่วนนี้เป็นการนำค่าไปใส่ตาราง
+
   const onFinish = async (values: CustomerInterface) => {
-    // Concatenate the UserName and Password
     const concatenatedString = `${values.UserName}${values.Password}`;
-  
-    // Hash the concatenated string using SHA-256
     const hashedPassword = await sha256(concatenatedString);
-  
-    // Update the values to include the HashedPassword
     values.HashedPassword = hashedPassword;
-  
+
     let res = await CreateCustomer(values);
-  
+
     if (res.status) {
       messageApi.open({
         type: "success",
         content: "บันทึกข้อมูลสำเร็จ",
       });
+
+      // Use navigate here to navigate to the desired route ("/" in this case)
+      navigate('/login');
     } else {
       console.log(res);
     }
   };
   return (
     <>
+     <style>
+          @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&family=PT+Sans&display=swap');
+        </style>
     <style>
           @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&family=PT+Sans&display=swap');
         </style>
@@ -105,7 +108,7 @@ const Register: React.FC = () => {
               <div className="registerBox">
                 <img src={raw} alt="" />
                 <div className="leftRegist">
-                <h2>Register</h2>
+                <h2 className="reLabel">Register</h2>
               
 
                     <Form.Item label="UserName" name="UserName"rules={[{required: true,message: "กรุณากรอก UserName!",},]}>
@@ -134,7 +137,7 @@ const Register: React.FC = () => {
 
                     {/* อันนี้ปุ่มเฉยๆไม่มีไร */}
                     <Form.Item>
-                        <Button style={{backgroundColor: 'brown'}} block type='primary' htmlType='submit'>Submit</Button>
+                        <Button className="subBTN" style={{backgroundColor: 'brown'}} block type='primary' htmlType='submit'>Submit</Button>
                     </Form.Item>
                 </div>
               </div>

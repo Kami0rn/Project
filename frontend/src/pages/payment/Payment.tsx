@@ -7,6 +7,7 @@
   import Detail from './detail/Detail';
  import { Router,Link } from 'react-router-dom';
  import BG from '../../assets/etc/BG.jpg';
+ import { useCustomer } from '../context/context';
   
 
 

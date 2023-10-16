@@ -5,9 +5,10 @@ import { CustomerInterface } from "../../../interfaces/Icustomer";
 import { PaymentInterface } from "../../../interfaces/Ipayment";
 import type { ColumnsType } from "antd/es/table";
 import { useState } from "react";
-
+import { useCustomer } from '../../context/context';
 
 function Detail() {
+    const { customer } = useCustomer();
     const columns: ColumnsType<CustomerInterface> = [
         {
           title: "ลำดับ",
@@ -83,8 +84,8 @@ useEffect(() => {
             <h1>
                 Name-Address
                
-       <h4>{firstNames}  {lastname}</h4>
-       <h5>{address}</h5>
+       <h4>{customer ? customer.FirstName : 'Guest'}   {customer ? customer.LastName : ''}</h4>
+       <h5>{customer ? customer.Address : ''}</h5>
             </h1>
             <hr />
 
