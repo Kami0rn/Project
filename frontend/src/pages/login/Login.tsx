@@ -4,6 +4,9 @@ import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { GetCustomerByHash } from "../../services/http/customer/customer";
 import { CustomerInterface } from "../../interfaces/Icustomer";
+import styles from './Login.module.css'
+import BG from '../../assets/etc/BG.jpg';
+import raw from '../../assets/etc/raw.jpg';
 
 const arrayBufferToHex = (arrayBuffer : any) => {
   const view = new DataView(arrayBuffer); // Corrected line
@@ -37,7 +40,7 @@ const Login = () => {
       if (customer) {
         message.success('Login successful');
         console.log(customer)
-        navigate('/');
+        navigate('/home');
       } else {
         message.error('Invalid username or password');
       }
@@ -53,13 +56,16 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
+    <div className={styles.loginContainer}>
+      <img src={BG} alt="bg" className={styles.bg} />
+      
       <Form
         name="login-form"
         initialValues={{ remember: true }}
         onFinish={onFinish}
+        className={styles.formContainer}
       >
+        
         <Form.Item
           name="UserName"
           rules={[{ required: true, message: 'Please enter your username' }]
