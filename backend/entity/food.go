@@ -15,7 +15,7 @@ type Food struct {
 
 	Path string 
 
-
+	Profile  string `gorm:"type:longtext"`
 	//FK export
 	OrderFoods []OrderFood `gorm:"foreignKey:FoodID"`
 

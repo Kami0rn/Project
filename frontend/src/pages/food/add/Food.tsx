@@ -77,7 +77,7 @@ function Food() {
                 </div>
                 <div className = "divFoodNameInput">
                   <Form.Item
-                    name="Name"
+                    name="FoodName"
                     rules={[
                       {
                         required: true,
@@ -96,7 +96,7 @@ function Food() {
                   </div>
                 <div className = "divPriceInput">
                   <Form.Item
-                    name="Price"
+                    name="FoodPrice"
                     rules={[{ required: true, message: 'Please Enter Price !' }]}
                   >
                     <InputNumber size="large" placeholder="Price"/>
