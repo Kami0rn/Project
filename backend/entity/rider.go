@@ -6,23 +6,43 @@ import (
 
 type Rider struct {
 
+	// gorm.Model
+
+	// FirstName string
+
+	// LastName string
+
+	// UserName string `gorm:"uniqueIndex"`
+
+	// Password string
+
+	// Email string `gorm:"uniqueIndex"`
+
+	// Phone int32
+
+	// License string
+
+	// HashedPassword string
 	gorm.Model
-
-	FirstName string
-
-	LastName string
 
 	UserName string `gorm:"uniqueIndex"`
 
-	Password string
+	FirstName string 
 
-	Email string `gorm:"uniqueIndex"`
+	LastName string 
 
-	Phone int32
+	Email string `gorm:"uniqueIndex;"`
 
-	License string
+	License string 
+
+	Phone string 
+
+	Password string 
+
+	HashedPassword string
 
 	//FK export
+	
 
 	Deliveries []Delivery `gorm:"foreignKey:RiderID"`
 

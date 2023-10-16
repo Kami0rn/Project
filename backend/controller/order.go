@@ -8,26 +8,35 @@ import (
 )
 
 // POST /users
-func CreatePayment(c *gin.Context) {
-	var payment entity.Payment
+func CreateOrder(c *gin.Context) {
+	var order entity.Order
 	var customer entity.Customer
+	var payment entity.Payment
 
 	// blind เข้าตัวแปร user
-	if err := c.ShouldBindJSON(&payment); err != nil {
+	if err := c.ShouldBindJSON(&order); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	// ค้นหา customer ด้วย id
-	if tx := entity.DB().Where("id = ?", payment.CustomerID).First(&customer); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("id = ?", order.CustomerID).First(&customer); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "customer not found"})
 		return
 	}
 
+	if tx := entity.DB().Where("id = ?", order.PaymentID).First(&payment); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "payment not found"})
+		return
+	}
+
 	// สร้าง User
-	p := entity.Payment{
+	p := entity.Order{
  // ตั้งค่าฟิลด์ FirstName // ตั้งค่าฟิลด์ LastName
-		Status:     payment.Status,     // ตั้งค่าฟิลด์ Email
+		Image:     order.Image,// ตั้งค่าฟิลด์ Email
+		TotalPrice:    order.TotalPrice,// ตั้งค่าฟิลด์ Email
+		Customer: customer,
+		Payment: payment,
 
 	}
 

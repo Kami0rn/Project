@@ -45,13 +45,7 @@
 
 
                           
-                          {/* Banktransfer button */}
-                          <Link to='/payment/card' ><button
-                            className={styles.btn} id={styles.debit}
-                          >
-                            Credit / Debit Card
-                            <img src={debit} alt="" />
-                          </button></Link>
+                          
                           {/* Pay at delivery button */}
                           <Link to='/payment/pad' ><button
                             className={styles.btn} id={styles.pod}

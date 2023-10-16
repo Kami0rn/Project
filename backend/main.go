@@ -36,6 +36,20 @@ func main() {
 	r.DELETE("/customers/:id", controller.DeleteCustomer)
 
 
+	// Customer Routes
+
+	r.GET("/riders", controller.ListRiders)
+
+	r.GET("/rider/:id", controller.GetRider)
+
+	r.GET("/rider/hash/:hashed_password", controller.GetRiderByHash)
+
+	r.POST("/riders", controller.CreateRider)
+
+	r.PATCH("/riders", controller.UpdateRider)
+
+	r.DELETE("/riders/:id", controller.DeleteRider)
+
 
 	// Payment Routes
 	r.GET("/payments", controller.ListPayments)
@@ -61,6 +75,17 @@ func main() {
 
 	r.DELETE("/foodsdel/:id", controller.DeleteFood)
 
+	
+
+	r.GET("/orders", controller.ListPayments)
+
+	r.GET("/order/:id", controller.GetPayment)
+
+	r.POST("/orders", controller.CreatePayment)
+
+	r.PATCH("/orders", controller.UpdatePayment)
+
+	r.DELETE("/orders/:id", controller.DeletePayment)
 	// Run the server
 
 	r.Run("localhost: " + PORT)

@@ -12,6 +12,9 @@ import Footers from './pages/footer/footers';
 import Login from './pages/login/Login';
 import FoodManage from './pages/home/FoodManage';
 import Food from './pages/food/add/Food';
+import RiderRegister from './pages/riderRegister/RiderRegister';
+import RiderSuccess from './pages/riderRegister/RiderSuccess';
+import Order from './pages/order/Order';
 
 function App() {
   return (
@@ -30,6 +33,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<FoodManage />} />
           <Route path="/food/add" element={<Food />} />
+          <Route path="/rider/register" element={<RiderRegister />} />
+          <Route path="/rider" element={<RiderSuccess />} />
+          <Route path="/order" element={<Order />} />
         </Routes>
         <Footers />
         

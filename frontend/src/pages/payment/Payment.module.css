@@ -141,8 +141,9 @@ hr {
     flex-direction: row ;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     align-self: center;
+    /* margin: 30px; */
 }
 #gbtn{
     display: flex;
@@ -151,6 +152,7 @@ hr {
     justify-content: center;
     width: 100%;
     padding-left: 4%;
+    margin-left: 7%;
 
     /* max-width: 500px; */
     

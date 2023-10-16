@@ -9,9 +9,9 @@ type Payment struct {
 
 	gorm.Model
 
-	IsPaid bool
 
-	Method string
+
+	Status string
 
 
 
