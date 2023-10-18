@@ -10,7 +10,7 @@ type Order struct {
 
 	gorm.Model
 
-	Image string
+	Status string 
 
 	TotalPrice float32
 
@@ -18,14 +18,8 @@ type Order struct {
 	CustomerID *uint
 	Customer Customer `gorm:"foreignKey:CustomerID"`
 
-
-
 	PaymentID *uint
 	Payment Payment `gorm:"foreignKey:PaymentID"`
-
-
-	
-	
 
 	//FK export
 	OrderFoods []OrderFood `gorm:"foreignKey:OrderID"`

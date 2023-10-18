@@ -1,6 +1,7 @@
 export interface PaymentInterface {
-    ID ?: number,
-    Status ?: string,
-    
+    ID: number;
+    IsPaid: boolean; //Default: false
+    Method: string; //Select: Cash, CreditCard, DebitCard, PayPal, Other
+    CustomerID: number; //PreLoad
     
 }
