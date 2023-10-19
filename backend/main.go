@@ -52,15 +52,15 @@ func main() {
 
 
 	// Payment Routes
-	r.GET("/payments", controller.ListPayments)
+	// r.GET("/payments", controller.ListPayments)
 
-	r.GET("/payment/:id", controller.GetPayment)
+	// r.GET("/payment/:id", controller.GetPayment)
 
-	r.POST("/payments", controller.CreatePayment)
+	// r.POST("/payments", controller.CreatePayment)
 
-	r.PATCH("/payments", controller.UpdatePayment)
+	// r.PATCH("/payments", controller.UpdatePayment)
 
-	r.DELETE("/payments/:id", controller.DeletePayment)
+	// r.DELETE("/payments/:id", controller.DeletePayment)
 
 
 	//Food Routes
@@ -77,15 +77,15 @@ func main() {
 
 	
 
-	r.GET("/orders", controller.ListPayments)
+	// r.GET("/orders", controller.ListPayments)
 
-	r.GET("/order/:id", controller.GetPayment)
+	// r.GET("/order/:id", controller.GetPayment)
 
-	r.POST("/orders", controller.CreatePayment)
+	// r.POST("/orders", controller.CreatePayment)
 
-	r.PATCH("/orders", controller.UpdatePayment)
+	// r.PATCH("/orders", controller.UpdatePayment)
 
-	r.DELETE("/orders/:id", controller.DeletePayment)
+	// r.DELETE("/orders/:id", controller.DeletePayment)
 	// Run the server
 
 	r.Run("localhost: " + PORT)

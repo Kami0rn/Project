@@ -14,6 +14,8 @@ type Order struct {
 
 	TotalPrice float32
 
+	method string
+
 	//FK
 	CustomerID *uint
 	Customer Customer `gorm:"foreignKey:CustomerID"`
