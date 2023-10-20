@@ -16,6 +16,7 @@ import RiderRegister from './pages/riderRegister/RiderRegister';
 import RiderSuccess from './pages/riderRegister/RiderSuccess';
 import EditFood from './pages/food/edit/EditFood';
 import Orders from './pages/orderboard/Orderboard';
+import Store from './pages/store/Store'
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
           <Route path="/rider" element={<RiderSuccess />} />
           <Route path="/food/edit/:id" element={<EditFood />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/store" element={<Store />} />
+          
         </Routes>
         <Footers />
         

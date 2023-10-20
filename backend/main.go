@@ -90,7 +90,11 @@ func main() {
 	r.GET("/states/:id", controller.GetState)
 	// Run the server
 	r.GET("/ordersdetail", controller.ListOrdersDetail)
+
 	// Run the server
+
+	r.GET("/State/:id", controller.GetState)
+
 
 	r.Run("localhost:" + PORT)
 

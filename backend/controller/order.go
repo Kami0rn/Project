@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"github.com/Kami0rn/SoyJuuProject/entity"
+	"fmt"
 )
 
 func CreateOrder(c *gin.Context) {
@@ -12,6 +13,9 @@ func CreateOrder(c *gin.Context) {
 	var state entity.State
 	var food entity.Food
 	var customer entity.Customer
+	fmt.Println("Received StateID: ", order.StateID)
+
+	
 	
 
 	if err := c.ShouldBindJSON(&order); err != nil {
@@ -19,17 +23,17 @@ func CreateOrder(c *gin.Context) {
 		return
 	}
 
-	if tx := entity.DB().Where("id = ?", order.StateID).First(&state); tx.RowsAffected == 0{
+	if tx := entity.DB().Where("id = ?", order.StateID).First(&state); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "state not found"})
 		return
 	}
-
-	if tx := entity.DB().Where("id = ?", order.FoodID).First(&state); tx.RowsAffected == 0{
-		c.JSON(http.StatusBadRequest, gin.H{"error": "food not fo und"})
+	
+	if tx := entity.DB().Where("id = ?", order.FoodID).First(&food); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "food not found"})
 		return
 	}
-
-	if tx := entity.DB().Where("id = ?", order.CustomerID).First(&state); tx.RowsAffected == 0{
+	
+	if tx := entity.DB().Where("id = ?", order.CustomerID).First(&customer); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "user not found"})
 		return
 	}
@@ -101,7 +105,8 @@ func UpdateOrder(c *gin.Context) {
 
 func ListOrdersDetail(c *gin.Context) {
 	var orders []entity.Order
-	if err := entity.DB().Preload("State").Raw("SELECT orders.id, users.user_name, users.address, foods.foodname, foods.picture, states.state_name FROM orders INNER JOIN foods ON orders.food_id = foods.idINNER JOIN users ON orders.user_id = users.idINNER JOIN states ON orders.state_id = states.id").Find(&orders).Error; err != nil {
+	if err := entity.DB().Preload("State").Raw("SELECT orders.id, users.user_name, users.address, foods.foodname, foods.picture, states.state_name FROM orders INNER JOIN foods ON orders.food_id = foods.id INNER JOIN users ON orders.user_id = users.id INNER JOIN states ON orders.state_id = states.id").Find(&orders).Error; err != nil {
+
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

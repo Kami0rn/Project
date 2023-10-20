@@ -113,8 +113,48 @@ async function GetOrdersDetail() {
   return res.data;
 }
 
+async function CreateOrder(data: OrderInterface) {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    };
+  
+    let res = await fetch(`${apiUrl}/orders`, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.data) {
+          return { status: true, message: res.data };
+        } else {
+          return { status: false, message: res.error };
+        }
+      });
+  
+    return res;
+  }
+
+  async function GetState(id: Number | undefined) {
+    const requestOptions = {
+      method: "GET"
+    };
+  
+    let res = await fetch(`${apiUrl}/state/${id}`, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.data) {
+          return res.data;
+        } else {
+          return false;
+        }
+      });
+  
+    return res;
+  }
+
 export {GetOrders,
         GetStates,
         DeleteOrderByID,
         UpdateOrder,
-        GetOrdersDetail};
+        GetOrdersDetail,
+        CreateOrder ,
+        GetState};
