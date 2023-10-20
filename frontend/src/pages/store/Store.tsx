@@ -8,7 +8,7 @@ import { GetCustomers} from "../../services/http/customer/customer";
 import { OrderInterface } from "../../interfaces/Iorder";
 import { CheckOutlined } from "@ant-design/icons";
 import { useCustomer } from '../context/context';
-
+import {ShoppingCartOutlined } from "@ant-design/icons";
 import { useOrderData } from '../context/OrderContext'; // Adjust the import path
 import type { ColumnsType } from "antd/es/table";
 import { FoodInterface } from "../../interfaces/Ifood";
@@ -162,7 +162,7 @@ const App: React.FC = () => {
     
     {
     
-    title: "Ingredient",
+    title: "รายละเอียด",
     
     dataIndex: "Description",
     
@@ -172,7 +172,7 @@ const App: React.FC = () => {
   
     {
     
-      title: "Picture",
+      title: "รูป",
       
       dataIndex: "Profile",
       
@@ -182,7 +182,7 @@ const App: React.FC = () => {
       )
       
       },{
-        title: "จัดการ",
+        title: "สั่งซื้อ",
         dataIndex: "Manage",
         key: "manage",
         render: (text, record, index) => (
@@ -191,7 +191,7 @@ const App: React.FC = () => {
               onClick={() => showModal(record)}
               style={{ marginLeft: 10 }}
               shape="circle"
-              icon = {<CheckOutlined/>}
+              icon = {<ShoppingCartOutlined/>}
               size={"large"}
               danger
             />
