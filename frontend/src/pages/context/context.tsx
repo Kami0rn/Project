@@ -1,10 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
 import { CustomerInterface } from '../../interfaces/Icustomer';
+import { GetOrdersByCustomerID } from '../../services/http/order/order'; // Import the function to get orders by customer ID
 
 const reactContext = createContext({ customer: null as CustomerInterface | null, login: (customerData: CustomerInterface | null) => {}, logout: () => {} });
 
 export const useCustomer = () => {
   return useContext(reactContext);
+  
 };
 
 export const CustomerProvider = ({ children }: { children: React.ReactNode }) => {

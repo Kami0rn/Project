@@ -147,14 +147,60 @@ async function CreateOrder(data: OrderInterface) {
           return false;
         }
       });
+      
   
     return res;
   }
+  async function GetOrdersByCustomerID(customerID: number) {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+  
+    let res = await fetch(`${apiUrl}/orders?customerID=${customerID}`, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.data) {
+          return res.data;
+        } else {
+          return false;
+        }
+      });
+  
+    return res;
+  }
+  async function GetFoodByFoodID(foodID : any) {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+  
+    const res = await fetch(`${apiUrl}/foods/${foodID}`, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.data) {
+          return res.data;
+        } else {
+          return null;
+        }
+      });
+  
+    return res;
+  }
+   
 
-export {GetOrders,
-        GetStates,
-        DeleteOrderByID,
-        UpdateOrder,
-        GetOrdersDetail,
-        CreateOrder ,
-        GetState};
+  export {
+    GetOrders,
+    GetStates,
+    DeleteOrderByID,
+    UpdateOrder,
+    GetOrdersDetail,
+    CreateOrder,
+    GetOrdersByCustomerID,
+    GetState,
+    GetFoodByFoodID
+};

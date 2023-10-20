@@ -91,7 +91,11 @@ func main() {
 	r.POST("/orders", controller.CreateOrder)
 	r.PATCH("/orders", controller.UpdateOrder)
 	r.DELETE("/orders/:id", controller.DeleteOrder)
+	r.GET("/orders/customer/:customerID", controller.GetOrdersByCustomerID)
+	
+	
 	// State Routes
+
 	r.GET("/states", controller.ListStates)
 	r.GET("/states/:id", controller.GetState)
 	// Run the server

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './Store.css';
 import { Layout, Space,Modal, Button,Form , message,  Table, } from 'antd';
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 import { CreateOrder } from "../../services/http/order/order";
 import { GetState } from "../../services/http/order/order";
 import { GetCustomers} from "../../services/http/customer/customer";
@@ -9,7 +9,7 @@ import { OrderInterface } from "../../interfaces/Iorder";
 import { CheckOutlined } from "@ant-design/icons";
 import { useCustomer } from '../context/context';
 
-
+import { useOrderData } from '../context/OrderContext'; // Adjust the import path
 import type { ColumnsType } from "antd/es/table";
 import { FoodInterface } from "../../interfaces/Ifood";
 import { GetFoods } from "../../services/http/food/food";
@@ -124,6 +124,9 @@ const contentStyle: React.CSSProperties = {
 };
 //ที่เขียนเเบบนี้ไม่รู้เหมือนกันก็อปantมา
 const App: React.FC = () => {
+  const orderContext = useOrderData(); // Get the context value
+  const { storeOrderData } = orderContext as { storeOrderData: (data: TypeData) => void };
+
   const { customer } = useCustomer();
   const columns: ColumnsType<FoodInterface> = [
 
@@ -197,6 +200,7 @@ const App: React.FC = () => {
       },
     
     ];
+  const navigate = useNavigate();
   const [Foods, setFoods] = useState<FoodInterface[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   const [open, setOpen] = useState(false);
@@ -218,9 +222,11 @@ const App: React.FC = () => {
   const showModal = (val: FoodInterface) => {
     setModalText(
       `คุณต้องการสั่งซื้อ "${val.FoodName}" หรือไม่ ?`
+      
     );
     setIdFood(val.ID);
     setOpen(true);
+    
   };
   const handleOk = async () => {
     setConfirmLoading(true);
@@ -231,7 +237,13 @@ const App: React.FC = () => {
         type: "success",
         content: "สั่งซื้อสำเร็จ",
       });
+      // Store OrderData in the context
+      storeOrderData(OrderData);
+
+      console.log('Updated OrderData:', OrderData);
       getFoods();
+      navigate("/payment")
+      
     } else {
       setOpen(false);
       messageApi.open({

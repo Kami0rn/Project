@@ -112,3 +112,15 @@ func ListOrdersDetail(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"data": orders})
 }
+
+func GetOrdersByCustomerID(c *gin.Context) {
+    var orders []entity.Order
+    customerID := c.Param("customerID") // Assuming you get the customerID from the URL parameter
+
+    if err := entity.DB().Preload("State").Where("customer_id = ?", customerID).Find(&orders).Error; err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+    }
+
+    c.JSON(http.StatusOK, gin.H{"data": orders})
+}

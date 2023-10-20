@@ -4,15 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CustomerProvider } from '../src/pages/context/context'; // Import the CustomerProvider
+import { OrderDataProvider } from '../src/pages/context/OrderContext'; // Adjust the import path
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <CustomerProvider> {/* Wrap your App component with CustomerProvider */}
+    <OrderDataProvider>
+      <CustomerProvider> {/* Wrap your App component with CustomerProvider */}
       <App />
-    </CustomerProvider>
+      </CustomerProvider>
+    </OrderDataProvider>
   </React.StrictMode>
 );
 

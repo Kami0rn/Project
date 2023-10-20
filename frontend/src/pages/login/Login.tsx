@@ -41,7 +41,7 @@ const Login = () => {
         login(customer);
         message.success('Login successful');
         console.log(customer)
-        navigate('/home');
+        navigate('/store');
       } else {
         message.error('Invalid username or password');
       }

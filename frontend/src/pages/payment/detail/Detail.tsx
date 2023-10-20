@@ -1,106 +1,80 @@
-import React,{useEffect} from 'react' ;
-import Styler from './Detail.module.css'; // Check the path and capitalization
-import { GetCustomerById, GetCustomers } from "../../../services/http/customer/customer";
+import React, { useEffect, useState } from 'react';
+import Styler from './Detail.module.css';
+import { GetCustomers } from "../../../services/http/customer/customer";
 import { CustomerInterface } from "../../../interfaces/Icustomer";
-import { PaymentInterface } from "../../../interfaces/Ipayment";
 import type { ColumnsType } from "antd/es/table";
-import { useState } from "react";
 import { useCustomer } from '../../context/context';
+import { GetOrdersByCustomerID , GetFoodByFoodID } from '../../../services/http/order/order';
+import { OrderInterface } from '../../../interfaces/Iorder'; // Adjust the import path
 
 function Detail() {
-    const { customer } = useCustomer();
-    const columns: ColumnsType<CustomerInterface> = [
-        {
-          title: "ลำดับ",
-          dataIndex: "ID",
-          key: "id",
-        },
-        {
-          title: "ชื่อ",
-          dataIndex: "FirstName",
-          key: "firstname",
-        },
-        {
-          title: "นามสกุุล",
-          dataIndex: "LastName",
-          key: "lastname",
-        },
-        {
-          title: "ชื่อสมาชิก",
-          dataIndex: "UserName",
-          key: "gender",
-        },
-        {
-            title: "รหัสผ่าน",
-            dataIndex: "Password",
-            key: "password",
-        },
-        {
-            title: "ที่อยู่",
-            dataIndex: "Address",
-            key: "address",
-        },
-        {
-          title: "อีเมล",
-          dataIndex: "Email",
-          key: "email",
-        },
-        {
-          title: "เบอร์โทร",
-          dataIndex: "Phone",
-          key: "phone",
-        },
-        {
-            title: "เพศ",
-            dataIndex: "Gender" ,
-            key : "gender"
-        }
-        
-      ];
-      const [customers, setCustomers] = useState<CustomerInterface[]>([]);
-      const [open, setOpen] = useState(false);
-      const [confirmLoading, setConfirmLoading] = useState(false);
-      const getCustomer = async () => {
-        let res = await GetCustomers();
-        if (res) {
-            setCustomers(res);
-        }
-      };
-const firstNames = customers.map(user => user.FirstName).join(", ");
-const address = customers.map(user => user.Address).join(", ");
-const lastname = customers.map(user => user.LastName).join(", ");
+  const { customer } = useCustomer();
+  const [orders, setOrders] = useState<OrderInterface[]>([]);
 
-// const userWithID1 = customers.find(user => user.ID === 1);
-useEffect(() => {
-    getCustomer();
-  }, []);
+  // Function to fetch orders based on customerID
+  const fetchOrders = async (customerID : any) => {
+    try {
+      const orders = await GetOrdersByCustomerID(customerID);
+      setOrders(orders);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      setOrders([]);
+    }
+  }
+  useEffect(() => {
+    if (customer && customer.ID !== undefined) {
+      const customerID = customer.ID;
+      fetchOrders(customerID); // Fetch orders when the customer is available
+    }
+  }, [customer]);
 
+  async function GetFoodNameByFoodID(foodID : any) {
+    try {
+      const food = await GetFoodByFoodID(foodID);
+      return food ? food.FoodName : 'N/A';
+    } catch (error) {
+      console.error('Error fetching food details:', error);
+      return 'N/A';
+    }
+  }
+  
 
   return (
-
-
     <>
-        <div id={Styler.address}>
-            <h1>
-                Name-Address
-               
-       <h4>{customer ? customer.FirstName : 'Guest'}   {customer ? customer.LastName : ''}</h4>
-       <h5>{customer ? customer.Address : ''}</h5>
-            </h1>
-            <hr />
-
-        </div>
-        <div id={Styler.bill}>
-            <h1>
-                Billing
-            </h1>
-            <hr />
-
-
-
-        </div>
+      <div id={Styler.address}>
+  <h1>Name-Address</h1>
+  {customer && (
+    <>
+      <h4>{customer.FirstName || 'Guest'} {customer.LastName || ''}</h4>
+      <h5>{customer.Address || ''}</h5>
     </>
-  )
+  )}
+  <hr />
+</div>
+{/* <div id={Styler.bill}>
+  <h1>Billing</h1>
+  <hr />
+</div> */}
+<div id={Styler.orders}>
+  <h1>Orders</h1>
+  <ul>
+    {customer &&
+      orders
+        .filter((order) => order.CustomerID === customer.ID)
+        .map((order) => (
+          <li key={order.ID}>
+            {/* <p>Order ID: {order.ID}</p> */}
+            <p>State: {order.State ? order.State.StateName : 'N/A'}</p>
+            <p>Food ID: {order.FoodID}</p>
+            <p>Customer ID: {order.CustomerID}</p>
+            <hr />
+          </li>
+        ))}
+  </ul>
+</div>
+
+    </>
+  );
 }
 
-export default Detail
+export default Detail;
