@@ -66,16 +66,10 @@ func main() {
 	//Food Routes
 
 	r.GET("/foods", controller.ListFoods)
-
 	r.GET("/food/:id", controller.GetFood)
-
 	r.POST("/foods", controller.CreateFood)
-
-	r.PATCH("/foods", controller.UpdateFood)
-
-	r.DELETE("/foodsdel/:id", controller.DeleteFood)
-
-	
+	r.PATCH("/food", controller.UpdateFood)
+	r.DELETE("/foods/:id", controller.DeleteFood)
 
 	// r.GET("/orders", controller.ListPayments)
 
@@ -88,35 +82,24 @@ func main() {
 	// r.DELETE("/orders/:id", controller.DeletePayment)
 	// Run the server
 
-	r.Run("localhost: " + PORT)
+	r.Run("localhost:" + PORT)
+
 
 }
 
 
 func CORSMiddleware() gin.HandlerFunc {
-
 	return func(c *gin.Context) {
-
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-
 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
-
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
-
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT")
-
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT ,DELETE ,PATCH")
 
 		if c.Request.Method == "OPTIONS" {
-
 			c.AbortWithStatus(204)
-
 			return
-
 		}
 
-
 		c.Next()
-
 	}
-
 }

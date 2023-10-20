@@ -4,7 +4,6 @@ import './Food.css';
 import {
   Space,
   Button,
-  Card,
   Col,
   Row,
   Form,
@@ -19,11 +18,12 @@ import { PlusOutlined } from "@ant-design/icons";
 import { FoodInterface } from "../../../interfaces/Ifood";
 import { ImageUpload } from "../../../interfaces/IUpload";
 import { CreateFood} from "../../../services/http/food/food";
+import { useNavigate } from "react-router-dom";
 
 function Food() {
  
 
-
+    const navigate = useNavigate();
     const [profile, setProfile] = useState<ImageUpload>()
     const [messageApi, contextHolder] = message.useMessage();
     const onFinish = async (values: FoodInterface) => {
@@ -34,6 +34,9 @@ function Food() {
           type: "success",
           content: "บันทึกข้อมูลสำเร็จ",
         });
+        setTimeout(function () {
+          navigate("/home");
+        }, 2000);
       } else {
         messageApi.open({
           type: "error",
@@ -68,7 +71,7 @@ function Food() {
         <div className ="topContent">
           <div className= "leftTopContent">
               <div className = "divBack">
-                <a href="http://" >Back</a>
+                
               </div>
               <div className = "divFoodName">
                 <div className = "divFoodNameLabel">

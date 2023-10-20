@@ -15,6 +15,7 @@ function Home() {
         <Link to='/rider/register' ><button>RiderRegister</button></Link>
         <Link to='/rider' ><button>RiderSuccess</button></Link>
         <Link to='/order' ><button>Order</button></Link>
+       
       </div>  
 
     </div>  

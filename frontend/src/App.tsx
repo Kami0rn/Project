@@ -14,7 +14,7 @@ import FoodManage from './pages/home/FoodManage';
 import Food from './pages/food/add/Food';
 import RiderRegister from './pages/riderRegister/RiderRegister';
 import RiderSuccess from './pages/riderRegister/RiderSuccess';
-
+import EditFood from './pages/food/edit/EditFood';
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
           <Route path="/food/add" element={<Food />} />
           <Route path="/rider/register" element={<RiderRegister />} />
           <Route path="/rider" element={<RiderSuccess />} />
-          
+          <Route path="/food/edit/:id" element={<EditFood />} />
         </Routes>
         <Footers />
         
