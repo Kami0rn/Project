@@ -6,6 +6,7 @@ import { GetFoods } from "../../../src/services/http/food/food";
 import { FoodInterface } from "../../interfaces/Ifood";
 import { Link, useNavigate } from "react-router-dom";
 import './FoodManage.css'
+import { FileAddOutlined } from "@ant-design/icons";
 
 
 const apiUrl = "http://localhost:8081";
@@ -167,6 +168,7 @@ function Foodmanage() {
 
   return (
     <>
+    
       {contextHolder}
       <Row>
         <Col span={12}>
@@ -196,6 +198,7 @@ function Foodmanage() {
         )}
       <Table rowKey="Profile" columns={columns} dataSource={users} /> */}
       <Table rowKey="ID" columns={columns} dataSource={foods} />
+      
     </div>
         
       </div>
@@ -210,7 +213,9 @@ function Foodmanage() {
       </Modal>
 
 
-      
+      <Link to='/food/add' style={{ fontSize: "24px", color: "red" }}>
+      <FileAddOutlined style={{ fontSize: "36px" }} />
+    </Link>
     </>
   );
 }
