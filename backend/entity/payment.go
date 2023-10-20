@@ -33,8 +33,7 @@ type Bank struct {
 	AccountHolder string `gorm:"not null"`
 
 	//FK
-	PaymentID *uint
-	Payment Payment `gorm:"foreignKey:PaymentID"`
+
 
 }
 

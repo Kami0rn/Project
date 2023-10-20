@@ -91,6 +91,16 @@ func main() {
 	r.PATCH("/orders", controller.UpdateOrder)
 	r.DELETE("/orders/:id", controller.DeleteOrder)
 	r.GET("/orders/customer/:customerID", controller.GetOrdersByCustomerID)
+
+	r.GET("/banks", controller.ListCustomers)
+
+	r.GET("/bank/:id", controller.GetCustomer)
+
+	r.POST("/banks", controller.CreateBank)
+
+	r.PATCH("/banks", controller.UpdateCustomer)
+
+	r.DELETE("/banks/:id", controller.DeleteCustomer)
 	
 	
 	// State Routes
