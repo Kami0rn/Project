@@ -25,6 +25,8 @@ func main() {
 
 	r.GET("/customers", controller.ListCustomers)
 
+	r.GET("/customers/:hashed_password", controller.GetCustomerByHash)
+
 	r.GET("/customer/:id", controller.GetCustomer)
 
 	r.GET("/customer/hash/:hashed_password", controller.GetCustomerByHash)
@@ -39,6 +41,8 @@ func main() {
 	// Customer Routes
 
 	r.GET("/riders", controller.ListRiders)
+
+	r.GET("/riders/:hashed_password", controller.GetRiderByHash)
 
 	r.GET("/rider/:id", controller.GetRider)
 
@@ -67,6 +71,7 @@ func main() {
 
 	r.GET("/foods", controller.ListFoods)
 	r.GET("/food/:id", controller.GetFood)
+	r.GET("/foods/:hashed_password", controller.ListFoods)
 	r.POST("/foods", controller.CreateFood)
 	r.PATCH("/food", controller.UpdateFood)
 	r.DELETE("/foods/:id", controller.DeleteFood)
@@ -82,6 +87,7 @@ func main() {
 	// r.DELETE("/orders/:id", controller.DeletePayment)
 	r.GET("/orders", controller.ListOrders)
 	r.GET("/orders/:id", controller.GetOrder)
+	r.GET("/orders/:hashed_password", controller.ListOrders)
 	r.POST("/orders", controller.CreateOrder)
 	r.PATCH("/orders", controller.UpdateOrder)
 	r.DELETE("/orders/:id", controller.DeleteOrder)
@@ -94,6 +100,7 @@ func main() {
 	// Run the server
 
 	r.GET("/State/:id", controller.GetState)
+	r.GET("/states/:hashed_password", controller.ListStates)
 
 
 	r.Run("localhost:" + PORT)

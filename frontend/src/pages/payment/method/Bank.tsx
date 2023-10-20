@@ -28,8 +28,8 @@ function Bank() {
                       </div>
                       <div className={styles.lastCol}>
                         
-                        <h4>Redeem</h4>
-                        <input type="text" placeholder='คูปอง'/>
+                        {/* <h4>Redeem</h4>
+                        <input type="text" placeholder='คูปอง'/> */}
                         <h4>Transaction</h4>
                         <input type="image">
                           

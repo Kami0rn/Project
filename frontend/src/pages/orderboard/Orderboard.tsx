@@ -31,6 +31,11 @@ function Orders() {
       key: "foodname",
     },
     {
+      title: "ราคา",
+      dataIndex: "FoodPrice", // Access FoodPrice through the Food property
+      key: "foodprice",
+    },
+    {
       title: "สถานะ",
       dataIndex: ["State", "StateName"],
       key: "stateid",
@@ -87,27 +92,38 @@ function Orders() {
   }
 
   const getOrders = async () => {
-    let res = await GetOrders();
+    try {
+      let res = await GetOrders();
   
-    if (res) {
-      const ordersWithStateName = res.map(async (order: OrderInterface) => {
-        // Fetch the customer data based on CustomerID
-        const customerResponse = await GetCustomerById(order.CustomerID);
-        const foodResponse = await GetFoodById(order.FoodID);
+      if (res) {
+        const ordersWithStateName = await Promise.all(
+          res.map(async (order: OrderInterface) => {
+            // Fetch the customer data based on CustomerID
+            const customerResponse = await GetCustomerById(order.CustomerID);
+            const foodResponse = await GetFoodById(order.FoodID);
   
-        return {
-          ...order,
-          StateName: order.StateName,
-          CustomerUsername: customerResponse?.UserName,
-          FoodName: foodResponse?.FoodName, // Ensure correct mapping
-        };
-      });
+            console.log('Food Response:', foodResponse);
   
-      // Use Promise.all to wait for all customer data fetches to complete
-      const ordersWithCustomerData = await Promise.all(ordersWithStateName);
-      setOrders(ordersWithCustomerData);
+            return {
+              ...order,
+              StateName: order.StateName,
+              CustomerUsername: customerResponse?.UserName,
+              FoodName: foodResponse?.FoodName,
+              FoodPrice: foodResponse?.FoodPrice,
+            };
+          })
+        );
+  
+        console.log('Orders:', ordersWithStateName);
+  
+        setOrders(ordersWithStateName);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
   };
+  
+  
   
 
   const showModal = (val: OrderInterface) => {
