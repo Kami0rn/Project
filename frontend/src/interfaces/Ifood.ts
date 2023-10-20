@@ -3,6 +3,7 @@ export interface FoodInterface {
     FoodName?: string
     FoodPrice?: number
     Description?: string
+    Ingredient?: string;
     Profile?: string
-    Path?: string
+    
 }

@@ -15,6 +15,7 @@ import Food from './pages/food/add/Food';
 import RiderRegister from './pages/riderRegister/RiderRegister';
 import RiderSuccess from './pages/riderRegister/RiderSuccess';
 import EditFood from './pages/food/edit/EditFood';
+import Orders from './pages/orderboard/Orderboard';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/rider/register" element={<RiderRegister />} />
           <Route path="/rider" element={<RiderSuccess />} />
           <Route path="/food/edit/:id" element={<EditFood />} />
+          <Route path="/orders" element={<Orders />} />
         </Routes>
         <Footers />
         
