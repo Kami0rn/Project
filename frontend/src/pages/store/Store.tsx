@@ -7,6 +7,7 @@ import { GetState } from "../../services/http/order/order";
 import { GetCustomers} from "../../services/http/customer/customer";
 import { OrderInterface } from "../../interfaces/Iorder";
 import { CheckOutlined } from "@ant-design/icons";
+import { useCustomer } from '../context/context';
 
 
 import type { ColumnsType } from "antd/es/table";
@@ -123,6 +124,7 @@ const contentStyle: React.CSSProperties = {
 };
 //ที่เขียนเเบบนี้ไม่รู้เหมือนกันก็อปantมา
 const App: React.FC = () => {
+  const { customer } = useCustomer();
   const columns: ColumnsType<FoodInterface> = [
 
     {
@@ -210,7 +212,7 @@ const App: React.FC = () => {
   }
   const OrderData: TypeData ={
     FoodID: IdFood,
-    CustomerID: IdCustomer,
+    CustomerID: customer ? customer.ID : 0,
     StateID: IdState
   }
   const showModal = (val: FoodInterface) => {

@@ -5,6 +5,8 @@ import { message, Col, Divider, Modal, Row, Button } from "antd";
 import Table, { ColumnsType } from "antd/es/table";
 import { CheckOutlined, EllipsisOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { GetCustomerById } from "../../services/http/customer/customer"; // Import the function
+import { GetFoodById } from "../../services/http/food/food";
 
 function Orders() {
   const columns: ColumnsType<OrderInterface> = [
@@ -15,7 +17,7 @@ function Orders() {
     },
     {
       title: "ผู้สั่งซื้อ",
-      dataIndex: "UserID",
+      dataIndex: "CustomerUsername",
       key: "stateid",
     },
     // {
@@ -25,12 +27,12 @@ function Orders() {
     // },
     {
       title: "อาหาร",
-      dataIndex: "FoodID",
-      key: "foodid",
+      dataIndex: "FoodName",
+      key: "foodname",
     },
     {
       title: "สถานะ",
-      dataIndex: "StateID",
+      dataIndex: ["State", "StateName"],
       key: "stateid",
     },
     
@@ -66,19 +68,19 @@ function Orders() {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState<String>();
   const [state, setState] = useState<number>(2);
-  const [UserId, setUserId] = useState<number>();
+  const [CustomerID, setCustomerID] = useState<number>();
   const [FoodId, setFoodId] = useState<number>();
   
   interface TypeData {
     ID?: number;
-    UserID?: number;
+    CustomerID?: number;
     FoodID?: number;
     StateID?: number;
   }
 
   const OrderData: TypeData = {
     ID: order,
-    UserID: UserId,
+    CustomerID: CustomerID,
     FoodID: FoodId,
     StateID: state
 
@@ -86,15 +88,32 @@ function Orders() {
 
   const getOrders = async () => {
     let res = await GetOrders();
+  
     if (res) {
-      setOrders(res);
+      const ordersWithStateName = res.map(async (order: OrderInterface) => {
+        // Fetch the customer data based on CustomerID
+        const customerResponse = await GetCustomerById(order.CustomerID);
+        const foodResponse = await GetFoodById(order.FoodID);
+  
+        return {
+          ...order,
+          StateName: order.StateName,
+          CustomerUsername: customerResponse?.UserName,
+          FoodName: foodResponse?.FoodName, // Ensure correct mapping
+        };
+      });
+  
+      // Use Promise.all to wait for all customer data fetches to complete
+      const ordersWithCustomerData = await Promise.all(ordersWithStateName);
+      setOrders(ordersWithCustomerData);
     }
   };
+  
 
   const showModal = (val: OrderInterface) => {
     setModalText(`ต้องการรับออร์เดอร์ "${val.ID}" หรือไม่`);
     setOrder(val.ID);
-    setUserId(val.UserID);
+    setCustomerID(val.CustomerID);
     setFoodId(val.FoodID);
     setOpen(true);
   };

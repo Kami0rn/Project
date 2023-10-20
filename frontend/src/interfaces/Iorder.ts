@@ -7,8 +7,10 @@ export interface OrderInterface {
     ID?: number;   
     StateID?: number;
     State?: StateInterface;
-    UserID?: number;
-    User?: CustomerInterface;
+    CustomerID?: number;
+    Customer?: CustomerInterface;
     FoodID?: number;
     Food?: FoodInterface;
+    StateName?: string; // Make sure the property name matches the API response
+
 }
