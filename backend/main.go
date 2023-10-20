@@ -80,6 +80,16 @@ func main() {
 	// r.PATCH("/orders", controller.UpdatePayment)
 
 	// r.DELETE("/orders/:id", controller.DeletePayment)
+	r.GET("/orders", controller.ListOrders)
+	r.GET("/orders/:id", controller.GetOrder)
+	r.POST("/orders", controller.CreateOrder)
+	r.PATCH("/orders", controller.UpdateOrder)
+	r.DELETE("/orders/:id", controller.DeleteOrder)
+	// State Routes
+	r.GET("/states", controller.ListStates)
+	r.GET("/states/:id", controller.GetState)
+	// Run the server
+	r.GET("/ordersdetail", controller.ListOrdersDetail)
 	// Run the server
 
 	r.Run("localhost:" + PORT)

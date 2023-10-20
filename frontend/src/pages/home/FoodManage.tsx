@@ -5,6 +5,7 @@ import type { ColumnsType } from "antd/es/table";
 import { GetFoods } from "../../../src/services/http/food/food";
 import { FoodInterface } from "../../interfaces/Ifood";
 import { Link, useNavigate } from "react-router-dom";
+import './FoodManage.css'
 
 
 const apiUrl = "http://localhost:8081";
@@ -81,11 +82,7 @@ function Foodmanage() {
       dataIndex: "Description",
       key: "description",
     },
-    {
-      title: "เบอร์โทร",
-      dataIndex: "Phone",
-      key: "phone",
-    },
+    
     {
       title: "จัดการ",
       dataIndex: "Manage",

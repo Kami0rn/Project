@@ -7,30 +7,21 @@ import (
 )
 
 type Order struct {
-
 	gorm.Model
-
-	Status string 
-
-	TotalPrice float32
-
-	method string
-
-	//FK
+	FoodID *uint
+	Food   Food `gorm:"references:id"`
 	CustomerID *uint
-	Customer Customer `gorm:"foreignKey:CustomerID"`
-
-	PaymentID *uint
-	Payment Payment `gorm:"foreignKey:PaymentID"`
-
-	//FK export
-	OrderFoods []OrderFood `gorm:"foreignKey:OrderID"`
-
-	Deliveries []Delivery `gorm:"foreignKey:OrderID"`
-
-
+	Customer   Customer `gorm:"references:id"`
+	StateID *uint
+	State State `gorm:"references:id"`
 
 }
+
+type State struct {
+	gorm.Model
+	StateName string
+	Order []Order `gorm:"foreignKey:StateID"`
+ }
 
 
 //https://github.com/edwindvinas/shopping-cart-api/blob/master/cart/ShoppingCart.go
